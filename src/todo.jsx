@@ -17,6 +17,11 @@ export default class Todo extends Component {
 
   addTodo = () => {
     const { todos, name } = this.state;
+    if (name === "") {
+      alert(`タスクを入力して下さい。`);
+      return;
+    }
+    
     this.setState({
       todos: [...todos, name],
     });
@@ -36,6 +41,7 @@ export default class Todo extends Component {
       <div>
         <input type="text" onInput={this.onInput} />
         <button onClick={this.addTodo}>Add ToDo</button>
+        <br />
         <ul>
           {todos.map((todo, index) => (
             <li key={index}>
