@@ -1,5 +1,49 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
+export const Todo = () => {
+  const [todos, setTodos] = useState([]);
+  const [name, setName] = useState("");
+
+  const onInput = (e) => {
+    setName(e.target.value);
+  };
+
+  const addTodo = () => {
+    if (name === "") {
+      alert(`タスクを入力して下さい。`);
+      return;
+    }
+
+    setTodos([...todos, name]);
+    setName(""); // 入力フィールドをクリア
+  };
+
+  const removeTodo = (index) => {
+    setTodos(todos.filter((_, i) => i !== index));
+  };
+
+  return (
+    <div>
+      <input 
+        type="text" 
+        value={name} 
+        onChange={onInput} 
+      />
+      <button onClick={addTodo}>Add ToDo</button>
+      <br />
+      <ul>
+        {todos.map((todo, index) => (
+          <li key={index}>
+            {todo}
+            <button onClick={() => removeTodo(index)}>Remove</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+/*
 export default class Todo extends Component {
   constructor(props) {
     super(props);
@@ -54,3 +98,4 @@ export default class Todo extends Component {
     );
   }
 }
+*/
