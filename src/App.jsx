@@ -1,4 +1,4 @@
-import "./index.css";
+import "./App.css";
 import {PageHeader} from "./layout/pageHeader";
 import {Todo} from "./layout/todo";
 
