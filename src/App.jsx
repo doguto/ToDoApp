@@ -6,7 +6,7 @@ import {Todo} from "./layout/todo";
 export default function App() {
   return (
     <div>
-      <div className="sticky top-0 z-10 bg-white">
+      <div>
         <PageHeader />
         <Todo />
       </div>

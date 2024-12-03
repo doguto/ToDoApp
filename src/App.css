@@ -554,25 +554,42 @@ video {
   display: none;
 }
 
-.sticky {
-  position: sticky;
+.relative {
+  position: relative;
 }
 
-.top-0 {
-  top: 0px;
+.bottom-0\.5 {
+  bottom: 0.125rem;
 }
 
-.z-10 {
-  z-index: 10;
+.left-4 {
+  left: 1rem;
 }
 
-.bg-white {
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.bg-green-300 {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  background-color: rgb(134 239 172 / var(--tw-bg-opacity, 1));
 }
 
-.underline {
-  text-decoration-line: underline;
+.p-2 {
+  padding: 0.5rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.font-bold {
+  font-weight: 700;
 }
 
 .filter {
