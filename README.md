@@ -4,9 +4,12 @@ TodoApp to learn React.
 ## CLI for dev
 ### tailwindcss
 ```bash
-npx tailwindcss -i ./src/index.css -o ./src/App.css --watch
+npx tailwindcss -i ./src/index.css -o ./src/App.css
 ```
-
+### react
+```bash
+npm run dev
+```
 
 ## Running React on Replit
 
