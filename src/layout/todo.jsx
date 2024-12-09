@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../App.css";
 
 export const Todo = () => {
   const [todos, setTodos] = useState([]);
@@ -24,78 +25,21 @@ export const Todo = () => {
 
   return (
     <div>
-      <input 
-        type="text" 
-        value={name} 
-        onChange={onInput} 
-      />
+      <input type="text" value={name} onChange={onInput} />
       <button onClick={addTodo}>Add ToDo</button>
       <br />
       <ul>
         {todos.map((todo, index) => (
           <li key={index}>
-            {todo}
-            <button onClick={() => removeTodo(index)}>Remove</button>
+            <div className="my-1">
+              <span className="w-2/3 py-0.5 px-2 mx-2 bg-blue-100 rounded">
+                {todo}
+                <button onClick={() => removeTodo(index)}>&#65049;</button>
+              </span>
+            </div>
           </li>
         ))}
       </ul>
     </div>
   );
 };
-
-/*
-export default class Todo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      todos: [],
-      name: "",
-    };
-  }
-
-  onInput = (e) => {
-    this.setState({
-      name: e.target.value,
-    });
-  };
-
-  addTodo = () => {
-    const { todos, name } = this.state;
-    if (name === "") {
-      alert(`タスクを入力して下さい。`);
-      return;
-    }
-    
-    this.setState({
-      todos: [...todos, name],
-    });
-  };
-
-  removeTodo = (index) => {
-    const { todos, name } = this.state;
-    this.setState({
-      todos: [...todos.slice(0, index), ...todos.slice(index + 1)],
-    });
-  };
-
-  render() {
-    const { todos } = this.state;
-
-    return (
-      <div>
-        <input type="text" onInput={this.onInput} />
-        <button onClick={this.addTodo}>Add ToDo</button>
-        <br />
-        <ul>
-          {todos.map((todo, index) => (
-            <li key={index}>
-              {todo}
-              <button onClick={() => this.removeTodo(index)}>Remove</button>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
-}
-*/
