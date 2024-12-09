@@ -1,3 +1,17 @@
+# TodoApp
+TodoApp to learn React.
+
+## CLI for dev
+### tailwindcss
+```bash
+npx tailwindcss -i ./src/index.css -o ./src/App.css
+```
+### react
+```bash
+npm run dev
+```
+
+
 ## Running React on Replit
 
 [React](https://reactjs.org/) is a popular JavaScript library for building user interfaces.
