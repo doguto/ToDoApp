@@ -1,23 +1,9 @@
 import "./App.css";
 import { useState } from "react";
-import { Plus, Calendar, FileText, Folder } from "lucide-react";
-
-// Data structures
-interface Task {
-  id: string;
-  title: string;
-  startDate: string;
-  dueDate: string;
-  notes: string;
-  projectId?: string;
-  completed: boolean;
-}
-
-interface Project {
-  id: string;
-  name: string;
-  description: string;
-}
+import { Plus, FileText, Folder } from "lucide-react";
+import { Task, Project } from "./types";
+import TaskCard from "./components/TaskCard";
+import ProjectCard from "./components/ProjectCard";
 
 export default function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -138,32 +124,12 @@ export default function App() {
 
           <div className="space-y-4">
             {projects.map((project) => (
-              <div key={project.id} className="border rounded-lg p-4 bg-gray-50">
-                <h3 className="font-semibold text-lg text-gray-800">{project.name}</h3>
-                {project.description && (
-                  <p className="text-gray-600 mt-1">{project.description}</p>
-                )}
-                <div className="mt-3">
-                  <p className="text-sm text-gray-500 mb-2">
-                    タスク ({getTasksForProject(project.id).length}件)
-                  </p>
-                  <div className="space-y-2">
-                    {getTasksForProject(project.id).map((task) => (
-                      <div key={task.id} className="flex items-center space-x-2 text-sm">
-                        <input
-                          type="checkbox"
-                          checked={task.completed}
-                          onChange={() => toggleTask(task.id)}
-                          className="rounded text-blue-500"
-                        />
-                        <span className={task.completed ? 'line-through text-gray-500' : 'text-gray-700'}>
-                          {task.title}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <ProjectCard 
+                key={project.id}
+                project={project}
+                tasks={getTasksForProject(project.id)}
+                onToggleTask={toggleTask}
+              />
             ))}
             {projects.length === 0 && (
               <p className="text-gray-500 text-center py-8">プロジェクトがありません</p>
@@ -258,40 +224,11 @@ export default function App() {
           <div className="space-y-3">
             <h3 className="font-semibold text-gray-700">未割り当てタスク</h3>
             {getUnassignedTasks().map((task) => (
-              <div key={task.id} className="border rounded-lg p-4 bg-gray-50">
-                <div className="flex items-center space-x-3 mb-2">
-                  <input
-                    type="checkbox"
-                    checked={task.completed}
-                    onChange={() => toggleTask(task.id)}
-                    className="rounded text-green-500"
-                  />
-                  <h4 className={`font-medium ${task.completed ? 'line-through text-gray-500' : 'text-gray-800'}`}>
-                    {task.title}
-                  </h4>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-4 text-sm text-gray-600 mb-2">
-                  {task.startDate && (
-                    <div className="flex items-center">
-                      <Calendar size={16} className="mr-1" />
-                      開始: {task.startDate}
-                    </div>
-                  )}
-                  {task.dueDate && (
-                    <div className="flex items-center">
-                      <Calendar size={16} className="mr-1" />
-                      期限: {task.dueDate}
-                    </div>
-                  )}
-                </div>
-                
-                {task.notes && (
-                  <p className="text-sm text-gray-600 bg-white p-2 rounded border">
-                    {task.notes}
-                  </p>
-                )}
-              </div>
+              <TaskCard 
+                key={task.id}
+                task={task}
+                onToggle={toggleTask}
+              />
             ))}
             {getUnassignedTasks().length === 0 && (
               <p className="text-gray-500 text-center py-4">未割り当てタスクがありません</p>
